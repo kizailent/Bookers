@@ -1,4 +1,18 @@
 <h1>Editing Book</h1>
+
+<!-- エラーメッセージを表示 -->
+<% if @book.errors.any? %>
+  <div class="error-explain">
+    <h3><%= @book.errors.count %> errors prohibited this book from being saved:</h3>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <%= form_with model: @book, url: book_path(@book.id), method: :patch  do |form| %>
   <div class="field">
     <%= form.text_field :title %>
